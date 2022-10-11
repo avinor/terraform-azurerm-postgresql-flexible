@@ -25,6 +25,37 @@ variable "storage_mb" {
   default     = "32768"
 }
 
+variable "administrator" {
+  description = "Name of administrator user"
+  default     = "pgsqladmin"
+}
+
+variable "delegated_subnet_id" {
+  description = "The ID of the virtual network subnet to create the PostgreSQL Flexible Server."
+}
+
+variable "private_dns_zone_id" {
+  description = "The ID of the private DNS zone to create the PostgreSQL Flexible Server."
+}
+variable "zone" {
+  description = "Specifies the Availability Zone in which the PostgreSQL Flexible Server should be located."
+  default     = null
+}
+variable "backup_retention_days" {
+  description = "The backup retention days for the PostgreSQL Flexible Server. Possible values are between 7 and 35 days."
+  default     = null
+}
+
+variable "databases" {
+  description = "Databases to create on the server."
+  type = list(object({
+    name      = string
+    collation = optional(string, "en_US.utf8")
+    charset   = optional(string, "utf8")
+  }))
+  default = []
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)

@@ -1,6 +1,6 @@
 # PostgreSQL Flexible Server.
 
-A general terraform module to create an Azure PostgreSQL Flexible Server
+A general terraform module to create an Azure PostgreSQL Flexible Server on av private network.
 
 ## Requirements
 
