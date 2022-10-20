@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.26.0"
+      version = "~> 3.27.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -25,6 +25,7 @@ resource "random_password" "uniq" {
 resource "azurerm_resource_group" "server" {
   name     = var.resource_group_name
   location = var.location
+  tags     = var.tags
 }
 
 resource "azurerm_postgresql_flexible_server" "server" {
@@ -32,18 +33,16 @@ resource "azurerm_postgresql_flexible_server" "server" {
   resource_group_name = azurerm_resource_group.server.name
   location            = azurerm_resource_group.server.location
 
-  version               = var.postgresql_version
-  sku_name              = var.sku_name
-  storage_mb            = var.storage_mb
-  delegated_subnet_id   = var.delegated_subnet_id
-  private_dns_zone_id   = var.private_dns_zone_id
-  zone                  = var.zone
-  backup_retention_days = var.backup_retention_days
-
+  version                = var.postgresql_version
+  sku_name               = var.sku_name
+  storage_mb             = var.storage_mb
+  delegated_subnet_id    = var.delegated_subnet_id
+  private_dns_zone_id    = var.private_dns_zone_id
+  zone                   = var.zone
+  backup_retention_days  = var.backup_retention_days
   administrator_login    = var.administrator
   administrator_password = random_password.uniq.result
-
-  tags = var.tags
+  tags                   = var.tags
 }
 
 resource "azurerm_postgresql_flexible_server_database" "database" {

@@ -12,7 +12,7 @@ module "simple" {
   databases = [
     {
       name = "mydb"
-    }
+    },
   ]
 
 }

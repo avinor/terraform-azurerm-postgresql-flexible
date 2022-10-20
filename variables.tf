@@ -38,7 +38,7 @@ variable "private_dns_zone_id" {
   description = "The ID of the private DNS zone to create the PostgreSQL Flexible Server."
 }
 variable "zone" {
-  description = "Specifies the Availability Zone in which the PostgreSQL Flexible Server should be located."
+  description = "Specifies the Availability Zone in which the PostgreSQL Flexible Server should be located. Defaults to 1"
   default     = null
 }
 variable "backup_retention_days" {
