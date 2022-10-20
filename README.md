@@ -4,8 +4,8 @@ A general terraform module to create an Azure PostgreSQL Flexible Server on av p
 
 ## Requirements
 
-This module need already existing subnet delegated for postgresql and a private dns zone ending with "
-.postgres.database.azure.com"
+This module need already existing subnet delegated for postgresql and a private dns zone ending
+with `.postgres.database.azure.com`.
 
 ## Usage
 
@@ -30,5 +30,6 @@ module "simple" {
 ```
 
 ## Documentation
+
 - [Azurerm provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server)
 - [PostgreSQL Flexible Server docs](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/)
