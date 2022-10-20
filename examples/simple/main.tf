@@ -4,15 +4,14 @@ module "simple" {
 
   name                = "simple"
   resource_group_name = "simple-rg"
-  location            = "westeurope"
+  location            = "norwayeast"
 
-  delegated_subnet_id = "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet"
-  private_dns_zone_id = "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg/providers/Microsoft.Network/privateDnsZones/my.org.com"
+  delegated_subnet_id = "/subscriptions/12345678-1234-1234-123456789012/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet"
+  private_dns_zone_id = "/subscriptions/12345678-1234-1234-123456789012/resourceGroups/rg/providers/Microsoft.Network/privateDnsZones/my.org.com"
 
   databases = [
-    {
-      name = "mydb"
-    },
+    { name = "mydb1" },
+    { name = "mydb2" },
   ]
 
 }
