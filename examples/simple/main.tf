@@ -15,7 +15,7 @@ module "simple" {
   ]
 
   configurations = {
-    "azure.extension" = "CUBE,CITEXT,BTREE_GIST"
+    "azure.extensions" = "CUBE,CITEXT,BTREE_GIST"
   }
 
 }
