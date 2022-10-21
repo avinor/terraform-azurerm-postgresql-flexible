@@ -14,4 +14,8 @@ module "simple" {
     { name = "mydb2" },
   ]
 
+  configurations = {
+    "azure.extension" = "CUBE,CITEXT,BTREE_GIST"
+  }
+
 }

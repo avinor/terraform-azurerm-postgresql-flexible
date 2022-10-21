@@ -56,6 +56,13 @@ variable "databases" {
   default = []
 }
 
+variable "configurations" {
+  description = "Sets PostgreSQL Configuration values on a Azure PostgreSQL Flexible Server."
+  type        = map(string)
+  default     = {}
+  nullable    = false
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)
