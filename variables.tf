@@ -63,6 +63,16 @@ variable "configurations" {
   nullable    = false
 }
 
+variable "diagnostics" {
+  description = "Diagnostic settings for postgresql flexible server. See README.md for details on configuration."
+  type = object({
+    log_analytics_workspace_id = string
+    logs                       = optional(list(string), [])
+    metrics                    = optional(list(string), [])
+  })
+  default = null
+}
+
 variable "tags" {
   description = "Tags to apply to all resources created."
   type        = map(string)

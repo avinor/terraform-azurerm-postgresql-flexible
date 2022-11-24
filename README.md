@@ -1,6 +1,6 @@
 # PostgreSQL Flexible Server.
 
-A general terraform module to create an Azure PostgreSQL Flexible Server on av private network.
+A general terraform module to create an Azure PostgreSQL Flexible Server on a private network.
 
 ## Requirements
 
@@ -28,6 +28,12 @@ module "simple" {
   ]
 }
 ```
+
+## Diagnostic
+
+Diagnostic settings can be configured to use a Log Analytics workspace using the variable `diagnostics`.
+Setting `all` in logs and metrics will send all possible diagnostics to the workspace. If not using `all` use categories
+to send.
 
 ## Documentation
 
