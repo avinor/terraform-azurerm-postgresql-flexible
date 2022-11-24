@@ -87,7 +87,7 @@ resource "azurerm_monitor_diagnostic_setting" "server" {
   }
 
   dynamic "metric" {
-    for_each = data.azurerm_monitor_diagnostic_categories.server.log_category_types
+    for_each = data.azurerm_monitor_diagnostic_categories.server.metrics
     content {
       category = metric.value
       enabled  = contains(var.diagnostics.metrics, "all") || contains(var.diagnostics.metrics, metric.value)
