@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.28.0"
+      version = "~> 3.32.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -60,4 +60,42 @@ resource "azurerm_postgresql_flexible_server_configuration" "server" {
   name      = each.key
   server_id = azurerm_postgresql_flexible_server.server.id
   value     = each.value
+}
+
+data "azurerm_monitor_diagnostic_categories" "server" {
+  resource_id = azurerm_postgresql_flexible_server.server.id
+}
+
+resource "azurerm_monitor_diagnostic_setting" "server" {
+  count = var.diagnostics != null ? 1 : 0
+
+  name                       = "${var.name}-diag"
+  target_resource_id         = azurerm_postgresql_flexible_server.server.id
+  log_analytics_workspace_id = var.diagnostics.log_analytics_workspace_id
+
+  dynamic "log" {
+    for_each = data.azurerm_monitor_diagnostic_categories.server.log_category_types
+    content {
+      category = log.value
+      enabled  = contains(var.diagnostics.logs, "all") || contains(var.diagnostics.logs, log.value)
+
+      retention_policy {
+        enabled = false
+        days    = 0
+      }
+    }
+  }
+
+  dynamic "metric" {
+    for_each = data.azurerm_monitor_diagnostic_categories.server.log_category_types
+    content {
+      category = metric.value
+      enabled  = contains(var.diagnostics.metrics, "all") || contains(var.diagnostics.metrics, metric.value)
+
+      retention_policy {
+        enabled = false
+        days    = 0
+      }
+    }
+  }
 }
